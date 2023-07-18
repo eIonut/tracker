@@ -1,12 +1,7 @@
-import './App.css'
-import Box from './Box'
+import "./App.css";
+import TrackPage from "./TrackPage";
 function App() {
-
-  return (
-    <>
-    <Box/>
-    </>
-  )
+  return <TrackPage />;
 }
 
-export default App
+export default App;
