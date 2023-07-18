@@ -17,10 +17,11 @@ const DayBox = styled.div.attrs((props) => ({
   display: flex;
   justify-content: center;
   align-items: center;
+
   &:hover {
     cursor: pointer;
-
   }
+
   ${ props => props.day === props.today
     ? '&:hover {background-color: rgba(0, 0, 0, 0.4)}'
     : props.status === "true"
@@ -43,12 +44,9 @@ const Day = ({ day, changeDayStatus }) => {
     changeDayStatus(day.id, status);
   }, [status]);
 
-  const d = new Date();
-  const today = d.getDate();
-
   return (
     <DayBox
-      today={today}
+      today={new Date().getDate()}
       day={day}
       status={status.toString()}
       onClick={handleChangeDayStatus}

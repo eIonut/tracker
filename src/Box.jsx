@@ -1,12 +1,12 @@
 import Day from "./Day";
-import React, { useState, useEffect } from "react";
-import styled, { css } from "styled-components";
+import { useEffect } from "react";
+import styled from "styled-components";
 
 const DaysContainer = styled.section`
   display: grid;
   grid-template-rows: repeat(auto, 1fr);
   grid-template-columns: repeat(6, 1fr);
-  grid-gap: 0.6rem;
+  grid-gap: 0.2rem;
 `;
 
 const Box = ({ days, setDays }) => {
