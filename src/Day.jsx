@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 const DayBox = styled.div.attrs((props) => ({
   today: props.today,
@@ -8,10 +8,10 @@ const DayBox = styled.div.attrs((props) => ({
 }))`
   background-color: ${(props) =>
     props.status === "true"
-      ? "rgba(0, 255, 0, 0.6)"
+      ? "rgba(0, 255, 0, 0.5)"
       : props.day === props.today
       ? "rgba(0, 0, 0, 0.2)"
-      : ""};
+      : "rgba(255, 255, 255, 1)"};
   width: 60px;
   height: 60px;
   display: flex;
@@ -19,7 +19,13 @@ const DayBox = styled.div.attrs((props) => ({
   align-items: center;
   &:hover {
     cursor: pointer;
-    filter: saturate(500%);
+
+  }
+  ${ props => props.day === props.today
+    ? '&:hover {background-color: rgba(0, 0, 0, 0.4)}'
+    : props.status === "true"
+    ? "&:hover {background-color: rgba(0, 255, 0, 0.7)}"
+    : '&:hover {background-color: rgba(0, 0, 0, 0.2)}'
   }
   transition: all 0.2s ease-out;
   border-radius: 50%;
