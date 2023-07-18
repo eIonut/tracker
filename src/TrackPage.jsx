@@ -22,7 +22,28 @@ const DaysCounter = styled.div`
   align-items: center;
   font-size: 1.6rem;
 `;
-const TrackPage = () => {
+const TrackPage = ({ days, setDays }) => {
+  const completedDays = days.filter((day) => {
+    if (day.completed) {
+      return true;
+    }
+
+    return false;
+  }).length;
+
+  const incompletedDays = days.filter((day) => {
+    if (!day.completed) {
+      return true;
+    }
+
+    return false;
+  }).length;
+
+  const [daysCounter, setDaysCounter] = useState({
+    completedDays,
+    incompletedDays,
+  });
+
   const date = new Date();
   const months = [
     "January",
@@ -42,15 +63,28 @@ const TrackPage = () => {
   const currentMonth = months[date.getMonth()];
   const [month, setMonth] = useState(currentMonth);
 
+  const daysC = (
+    <DaysCounter>
+      <span>
+        {daysCounter.completedDays
+          ? "Days completed: " + daysCounter.completedDays
+          : "Start the goal by checking a day"}
+      </span>
+      <span>Days to go: {daysCounter.incompletedDays}</span>
+    </DaysCounter>
+  );
+
+  useEffect(() => {
+    setDaysCounter({ completedDays, incompletedDays });
+  }, [days]);
   return (
     <TrackPageContainer>
       <div>
         {<MonthTitle>{month}</MonthTitle>}
-        <Box />
-        <DaysCounter>
-          <span>Days left: 10</span>
-          <span>Days completed: 21</span>
-        </DaysCounter>
+        <Box days={days} setDays={setDays} />
+        {daysCounter.completedDays === days.length
+          ? "You have completed the goal! Congrats!"
+          : daysC}
       </div>
     </TrackPageContainer>
   );
