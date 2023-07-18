@@ -1,19 +1,22 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-const Day = ({day, changeDayStatus}) => {
+const Day = ({ day, changeDayStatus }) => {
   const [status, setStatus] = useState(day.completed);
 
   const handleChangeDayStatus = () => {
-    setStatus(!status);
-    changeDayStatus(day.id, status)
-  }
+    setStatus((prevStatus) => !prevStatus);
+  };
+
+  useEffect(() => {
+    changeDayStatus(day.id, status);
+  }, [status]);
 
   return (
     <>
-      <button onClick={() => handleChangeDayStatus()}>{day.day}</button>
+      <button onClick={handleChangeDayStatus}>{day.day}</button>
       {status ? <p>Done</p> : <p>Not done</p>}
     </>
-  )
-}
+  );
+};
 
-export default Day
+export default Day;
