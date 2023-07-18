@@ -7,6 +7,7 @@ const DaysContainer = styled.section`
   grid-template-rows: repeat(auto, 1fr);
   grid-template-columns: repeat(6, 1fr);
   grid-gap: 0.2rem;
+  padding: 2rem;
 `;
 
 const Box = ({ days, setDays }) => {

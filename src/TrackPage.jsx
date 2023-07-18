@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import Box from "./Box";
+import Completed from "./Completed";
 
 const TrackPageContainer = styled.section`
   display: flex;
@@ -21,6 +22,7 @@ const DaysCounter = styled.div`
   align-items: center;
   font-size: 1.6rem;
 `;
+
 const TrackPage = ({ days, setDays }) => {
   const completedDays = days.filter((day) => {
     if (day.completed) {
@@ -81,6 +83,7 @@ const TrackPage = ({ days, setDays }) => {
       <div>
         {<MonthTitle>{month}</MonthTitle>}
         <Box days={days} setDays={setDays} />
+        <Completed maxDays={completedDays + incompletedDays} completedDays={completedDays}/>
         {daysCounter.completedDays === days.length
           ? "You have completed the goal! Congrats!"
           : daysC}
