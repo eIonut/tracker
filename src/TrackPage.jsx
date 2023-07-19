@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled, { css } from "styled-components";
 import Box from "./Box";
 import Completed from "./Completed";
+import DaysContext from "./DaysContext";
 
 const TrackPageContainer = styled.section`
   display: flex;
@@ -23,7 +24,9 @@ const DaysCounter = styled.div`
   font-size: 1.6rem;
 `;
 
-const TrackPage = ({ days, setDays }) => {
+const TrackPage = () => {
+  const { days } = useContext(DaysContext);
+
   const completedDays = days.filter((day) => {
     if (day.completed) {
       return true;
@@ -82,8 +85,11 @@ const TrackPage = ({ days, setDays }) => {
     <TrackPageContainer>
       <div>
         {<MonthTitle>{month}</MonthTitle>}
-        <Box days={days} setDays={setDays} />
-        <Completed maxDays={completedDays + incompletedDays} completedDays={completedDays}/>
+        <Box />
+        <Completed
+          maxDays={completedDays + incompletedDays}
+          completedDays={completedDays}
+        />
         {daysCounter.completedDays === days.length
           ? "You have completed the goal! Congrats!"
           : daysC}

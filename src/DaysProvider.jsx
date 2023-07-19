@@ -2,8 +2,7 @@ import DaysContext from "./DaysContext";
 import { useState } from "react";
 
 const DaysProvider = (props) => {
-
-   function getDaysInMonth(year, month) {
+  function getDaysInMonth(year, month) {
     return new Date(year, month, 0).getDate();
   }
   const date = new Date();
@@ -20,15 +19,13 @@ const DaysProvider = (props) => {
     return { day, id: day, completed: false };
   });
 
-   const [days, setDays] = useState(
+  const [days, setDays] = useState(
     () => JSON.parse(window.localStorage.getItem("days")) || daysInMonth
   );
 
-  const value = {days, setDays};
+  const value = { days, setDays };
 
-  return (
-    <DaysContext.Provider value={value} {...props}></DaysContext.Provider>
-  )
-}
+  return <DaysContext.Provider value={value} {...props}></DaysContext.Provider>;
+};
 
 export default DaysProvider;

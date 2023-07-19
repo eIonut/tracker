@@ -1,3 +1,5 @@
-  const DaysContext = useContext();
+import { createContext } from "react";
 
-  export default DaysContext
+const DaysContext = createContext();
+
+export default DaysContext;

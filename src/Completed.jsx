@@ -1,15 +1,17 @@
-import React, {useEffect, useRef, useState} from 'react'
+import React, { useEffect, useRef, useState } from "react";
 import styled, { css } from "styled-components";
 
 const ProgressBarContainer = styled.section`
   position: relative;
-  background-color: rgba(0,0,0,0);
-box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;`;
+  background-color: rgba(0, 0, 0, 0);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  margin-bottom: 2rem;
+`;
 
 const ProgressBar = styled.div`
-  padding: 2rem;
+  padding: 2rem 0 2rem 0;
   background-color: rgba(0, 255, 0, 0.5);
-  width: ${(props) => props.barWidth ? props.barWidth + '%' : "0px"}
+  width: ${(props) => (props.barWidth ? props.barWidth + "%" : 0 + "px")};
 `;
 
 const ProgressText = styled.p`
@@ -23,10 +25,10 @@ const ProgressText = styled.p`
   font-size: 1.6rem;
 `;
 
-const Completed = ({completedDays, maxDays}) => {
-  console.log('completed ran')
+const Completed = ({ completedDays, maxDays }) => {
+  console.log("completed ran");
   const [isFull, setIsFull] = useState(false);
-   useEffect(() => {
+  useEffect(() => {
     if (completedDays === maxDays) {
       setIsFull(true);
     }
@@ -34,10 +36,16 @@ const Completed = ({completedDays, maxDays}) => {
 
   return (
     <ProgressBarContainer>
-      <ProgressText>{maxDays - completedDays ? <p>{maxDays - completedDays} days to go</p> : 'Goal complete!'}</ProgressText>
-      <ProgressBar barWidth={(completedDays / maxDays) * 100}/>
+      <ProgressText>
+        {maxDays - completedDays ? (
+          <span>{maxDays - completedDays} days to go</span>
+        ) : (
+          "Goal complete!"
+        )}
+      </ProgressText>
+      <ProgressBar barWidth={(completedDays / maxDays) * 100} />
     </ProgressBarContainer>
-  )
-}
+  );
+};
 
-export default React.memo(Completed)
+export default React.memo(Completed);

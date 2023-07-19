@@ -1,6 +1,7 @@
 import Day from "./Day";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import styled from "styled-components";
+import DaysContext from "./DaysContext";
 
 const DaysContainer = styled.section`
   display: grid;
@@ -10,7 +11,8 @@ const DaysContainer = styled.section`
   padding: 2rem;
 `;
 
-const Box = ({ days, setDays }) => {
+const Box = () => {
+  const { days, setDays } = useContext(DaysContext);
   const changeDayStatus = (id, status) => {
     const newState = days.map((day) => {
       days;
