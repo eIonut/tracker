@@ -1,8 +1,8 @@
 import DaysContext from "./DaysContext";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 const DaysProvider = (props) => {
-  function getDaysInMonth(year, month) {
+  const getDaysInMonth = (year, month) => {
     return new Date(year, month, 0).getDate();
   }
   const date = new Date();

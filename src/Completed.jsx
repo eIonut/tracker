@@ -11,7 +11,7 @@ const ProgressBarContainer = styled.section`
 const ProgressBar = styled.div`
   padding: 2rem 0 2rem 0;
   background-color: rgba(0, 255, 0, 0.5);
-  width: ${(props) => (props.barWidth ? props.barWidth + "%" : 0 + "px")};
+  width: ${(props) => (props.barwidth ? props.barwidth + "%" : 0 + "px")};
 `;
 
 const ProgressText = styled.p`
@@ -26,24 +26,27 @@ const ProgressText = styled.p`
 `;
 
 const Completed = ({ completedDays, maxDays }) => {
-  console.log("completed ran");
   const [isFull, setIsFull] = useState(false);
+
   useEffect(() => {
     if (completedDays === maxDays) {
       setIsFull(true);
+    }
+    else {
+      setIsFull(false)
     }
   }, [completedDays]);
 
   return (
     <ProgressBarContainer>
       <ProgressText>
-        {maxDays - completedDays ? (
-          <span>{maxDays - completedDays} days to go</span>
+        {isFull ? (
+           "Goal complete!"
         ) : (
-          "Goal complete!"
+           <span>{maxDays - completedDays} days to go</span>
         )}
       </ProgressText>
-      <ProgressBar barWidth={(completedDays / maxDays) * 100} />
+      <ProgressBar barwidth={(completedDays / maxDays) * 100} />
     </ProgressBarContainer>
   );
 };

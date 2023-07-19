@@ -34,7 +34,6 @@ const DayBox = styled.div.attrs((props) => ({
 `;
 
 const Day = ({ day, changeDayStatus }) => {
-  console.log('day running')
   const [status, setStatus] = useState(day.completed);
 
   const handleChangeDayStatus = () => {
