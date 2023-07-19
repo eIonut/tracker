@@ -3,8 +3,8 @@ import styled, { css } from "styled-components";
 
 const ProgressBarContainer = styled.section`
   position: relative;
-  background-color: rgba(0,0,0,0.2);
-`;
+  background-color: rgba(0,0,0,0);
+box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;`;
 
 const ProgressBar = styled.div`
   padding: 2rem;
@@ -33,7 +33,7 @@ const Completed = ({completedDays, maxDays}) => {
 
   return (
     <ProgressBarContainer>
-      <ProgressText>{completedDays} days to go</ProgressText>
+      <ProgressText>{maxDays - completedDays ? <p>{maxDays - completedDays} days to go</p> : 'Goal complete!'}</ProgressText>
       <ProgressBar barWidth={(completedDays / maxDays) * 100}/>
     </ProgressBarContainer>
   )
