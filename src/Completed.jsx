@@ -9,7 +9,7 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;`;
 const ProgressBar = styled.div`
   padding: 2rem;
   background-color: rgba(0, 255, 0, 0.5);
-  width: ${(props) => props.barWidth + '%'}
+  width: ${(props) => props.barWidth ? props.barWidth + '%' : "0px"}
 `;
 
 const ProgressText = styled.p`
@@ -24,6 +24,7 @@ const ProgressText = styled.p`
 `;
 
 const Completed = ({completedDays, maxDays}) => {
+  console.log('completed ran')
   const [isFull, setIsFull] = useState(false);
    useEffect(() => {
     if (completedDays === maxDays) {
@@ -39,4 +40,4 @@ const Completed = ({completedDays, maxDays}) => {
   )
 }
 
-export default Completed
+export default React.memo(Completed)
